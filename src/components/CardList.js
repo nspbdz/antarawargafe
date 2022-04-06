@@ -1,4 +1,4 @@
-import { Card, Button, Row, Col, Container } from "react-bootstrap";
+import { Card, Button, Row, Col, Container,Table } from "react-bootstrap";
 import ModalSignin from "./modal/ModalSignin";
 import { useState, useContext, useRef, useEffect } from "react";
 import "../styles/customStyle.css";
@@ -8,13 +8,15 @@ import { API } from "../config/api";
 import { useHistory, Router, Link } from "react-router-dom";
 import { BsBookmarkFill, BsBookmark } from "react-icons/bs";
 import ExpendableText from "./ExpendableText"
+import CardItem from "./CardItem";
+
 // import draftToHtml from 'draftjs-to-html';
 
 var striptags = require('striptags');
 function CardList(props) {
   const { isBookmark, data, dataBookmark } = props
   let history = useHistory();
-
+  console.log(data);
   const [show, setshow] = useState(false);
   const [dataFilter, setDataFilter] = useState([]);
 
@@ -58,62 +60,65 @@ function CardList(props) {
 
     history.push(`journey/${id}`);
   };
+  console.log(data);
+
   return (
     <>
+      <Row>
+        <Col sm={12} >
+          
+          <Table striped bordered hover style={{ width: "1100px" }} >
+            <thead style={{ backgroundColor: "#E5E5E5" }}>
+              <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Post Code</th>
+                <th>Income</th>
+                <th> Status </th>
+                <th style={{ textAlign: "center" }}>Action</th>
+              </tr>
+            </thead>
 
-      <Container>
-        <Row>
-          {data?.length <= 0 && (
-            <span id="titleNotFound" >Data Tidak Ada  </span>
-          )}
-          {data.map((item, index) => (
-            <>
-              <Col md="auto">
-                <Card data-div_id={item.id} id="styleCard" >
-                  <div class="wrapCardImg" onClick={() => handlePushToDetail(item.id)}>
-                    <Card.Img variant="top" src={item.image} id="imgCard" />
-                  </div>
-                  <Card.Body id="bodyCard" >
+            {data?.length <= 0 && (
+              // <img src={not_found} width="100%" height="100%" alt="not found" />
+              <>
+              
+              </>
+            )}
+            {data?.length > 0 &&
+              data?.map((item, index) => (
+                <tbody style={{ backgroundColor: "#FFFFFF" }} key={index}>
 
-                    {state.isLogin == true &&
-                      <>
-                        {item.bookmark === true
-                          ?
-                          <div class="card-img-overlay" id="wrapBookmarkStyle" onClick={() => handleDeleteBookmark(item.id)}>
-                            <BsBookmarkFill id="bookmarkStyle" />
-                          </div>
-                          :
-                          <div class="card-img-overlay" id="wrapBookmarkStyle" onClick={() => handleAddBookmark(item.id)}>
-                            <BsBookmark id="bookmarkStyle" />
-                          </div>
-                        }
+                  <tr id="TableStyle" >
+                    <td value={item.id}> {item.id}</td>
+                    <td> <p className="tableVal"> {item.name}</p> </td>
+                    <td> <p className="tableVal"> {item.job}</p> </td>
+                    
+                    
 
-                      </>
-                    }
-                    {state.isLogin !== true &&
-                      <div class="card-img-overlay" id="wrapBookmarkStyle" onClick={() => setshow(true)}>
-                        <BsBookmark id="bookmarkStyle" />
-                      </div>
-                    }
-                    <Card.Title id="cardTitle" >
-                      <span id="titleCardList" >{item.title}  </span>
-                      <span id="dateCardList">   {item.createdAt} {item.user?.fullName} </span>
-                      {/* <ExpendableText maxHeight={85} id="descriptionCardList">
-                        {striptags(draftToHtml(JSON.parse(item.description)))}
-                      </ExpendableText> */}
+                  </tr>
 
-                    </Card.Title>
-                  </Card.Body>
-                  <ModalSignin show={show} handleClose={() => setshow(false)} />
-                </Card>
+                </tbody>
 
-              </Col>
-            </>
-          ))}
-        </Row>
-      </Container>
+              ))}
+          </Table>
+          {/* <ModalUpdateTransaction 
+          setConfirmApprove={setConfirmApprove}
+          show={show}
+          handleClose={handleClose}
+
+          handleApproveConfirm={handleApproveConfirm}
+            />
+          <ModalUpdateCancelTransaction 
+          setConfirmCancel={setConfirmCancel}
+          show={showCancel}
+          handleCloseCancel={handleCloseCancel}
+          handleCancelConfirm={handleCancelConfirm}
+            /> */}
+        </Col>
+      </Row>
     </>
-
 
   );
 }

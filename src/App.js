@@ -4,8 +4,9 @@ import { UserContext } from "./context/userContext";
 import ModalSignin from "./components/modal/ModalSignin"
 import Home from "./pages/Home";
 import Header from "./components/Header";
-
-import Profile from "./pages/Profile";
+// import Header from "./components/Header";
+import Heads from "./components/Heads"
+import Warga from "./pages/Warga";
 import Bookmark from "./pages/Bookmark";
 import DetailJourney from "./pages/DetailJourney"
 // import AddJourney from "./pages/AddJourney"
@@ -13,6 +14,8 @@ import DetailJourney from "./pages/DetailJourney"
 import ListJourney from "./pages/ListJourney"
 import AddJourney from "./pages/AddJourney"
 import UpdateJourney from "./pages/UpdateJourney"
+import AddWarga from "./pages/AddWarga"
+import UpdateWarga from "./pages/UpdateWarga"
 
 import { API, setAuthToken } from "./config/api";
 
@@ -89,7 +92,8 @@ function App() {
   // console.log(checkUser)
   return (
     <>
-      <Header />
+      {/* <Header /> */}
+      <Heads />
       
 
       <Switch>
@@ -97,10 +101,13 @@ function App() {
         <Route exact path="/journey/:id" component={DetailJourney} />
         <Route exact path="/listjourney" component={ListJourney} />
         <Route exact path="/addjourney" component={AddJourney} />
+        <Route exact path="/addwarga" component={AddWarga} />
         <Route exact path="/updatejourney/:id" component={UpdateJourney} />
+        <Route exact path="/Updatewarga/:id" component={UpdateWarga} />
+        
         {/* <Route exact path="/addJourney" component={AddJourney} /> */}
 
-        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/warga" component={Warga} />
         <Route exact path="/bookmark" component={Bookmark} />
 
       </Switch>

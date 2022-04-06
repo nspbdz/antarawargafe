@@ -84,7 +84,7 @@ function Profile() {
           <Container>
             <Row >
               <Col >
-                <>
+                <> 
                   <div id="wrapTitle">
                   <span id="titleProfile">Profile</span>
                   </div>

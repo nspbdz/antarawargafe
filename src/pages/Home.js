@@ -8,7 +8,11 @@ import "../styles/customStyle.css"
 import { API } from "../config/api";
 import { UserContext } from "../context/userContext";
 import { FilterContext } from "../context/filterContext";
-import Header from "../components/Header";
+// import Header from "../components/Header";
+import Sidebar from "./Sidebar.js";
+// import Heads from "./Heads.js";
+import './Dashboard.css'
+
 
 
 const Home = () => {
@@ -55,9 +59,10 @@ const Home = () => {
 
   const getTodayJourney = async () => {
     try {
-      const response = await API.get("/todayjourney");
+      const response = await API.get("/wargas");
       // Store product data to useState variabel
       setJourney(response.data.data);
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -70,7 +75,7 @@ const Home = () => {
 
   const getAllJourney = async () => {
     try {
-      const response = await API.get("/journeys");
+      const response = await API.get("/wargas");
       // Store product data to useState variabel
       setAllJourney(response.data.data);
     } catch (error) {
@@ -117,9 +122,6 @@ const Home = () => {
     { ...group, bookmark: bookmarkIds.includes(group.id) })
   );
 
-  let bookmarkTodayJourney = journey.map(group => (
-    { ...group, bookmark: bookmarkIds.includes(group.id) })
-  );
   console.log("bookmarkAllJourney", bookmarkAllJourney)
 
   return (
@@ -130,18 +132,17 @@ const Home = () => {
         {state.isLogin == true && (
           <Col   >
             <div id="wrapTitle">
-              <span id="titleHome">Journey</span>
+              {/* <span id="titleHome">Journey</span> */}
             </div>
-            <SearchForm handleSearch={setSearch} />
+            {/* <SearchForm handleSearch={setSearch} /> */}
             {search == ""
               ?
               <>
-                <span id="titleHome" >Today Journey  </span>
-                <CardList data={bookmarkTodayJourney} />
+                {/* <span id="titleHome" >Today Journey  </span>
                 <span id="titleHome" > Top Bookmarked</span>
-                <MostBookmark data={bookmarkMostBookmarked} />
-                <span id="titleHome" >All Journey </span>
-                <CardList data={bookmarkAllJourney} />
+                <MostBookmark data={bookmarkMostBookmarked} />*/}
+                 <span id="titleHome" >All Journey </span>
+                 <CardList data={bookmarkAllJourney} /> 
               </>
               :
               <>
@@ -154,41 +155,52 @@ const Home = () => {
           </Col>
         )}
       </Row>
+
+
       <Row className="justify-content-md-center" >
+        
         {!state.isLogin && (
-          <Col md="auto" >
-            <Card className="bg-dark text-white">
-              <Card.Img src={phuket} id="carouselImg" alt="Card image" />
-              <Card.ImgOverlay>
-                <Card.Title id="titleCarousel">The Journey<br></br> you  ever dreamed of.</Card.Title>
-                <Card.Text id="textCarousel">
-                  We made a tool so you can easily keep & share your travel memories. <br></br>But there is a lot more
-                 </Card.Text>
-              </Card.ImgOverlay>
-            </Card>
 
-            <span id="titleHome" >Journey</span>
-            <SearchForm handleSearch={setSearch} />
+            
+<>
+         <Container fluid>
+                {/* <Heads /> */}
+                <Row>
+                    <Col xs={2} id="sidebar-wrapper">      
+                      {/* <Sidebar /> */}
+                    </Col>
+                    <Col  xs={10} id="page-content-wrapper">
+                        {/* <CardList data={alljourney} /> */}
+                    </Col> 
+                </Row>
 
-            {search !== ""
-              ?
-              <>
-                <span id="titleHome" >Search Journey  </span>
-                <CardList data={bookmarkSearchJourney} />
+            </Container>
+        </>
+          // <Col md="auto" >
 
-              </>
-              :
-              <>
-                <span id="titleHome" >Today Journey  </span>
-                <CardList data={bookmarkTodayJourney} />
-                <span id="titleHome" >All Journey </span>
-                <CardList data={bookmarkAllJourney} />
-              </>
+          //   <span id="titleHome" >Journey</span>
+          //   <SearchForm handleSearch={setSearch} />
+
+          //   {search !== ""
+          //     ?
+          //     <>
+          //       <span id="titleHome" >Search Journey  </span>
+          //       <CardList data={bookmarkSearchJourney} />
+
+          //     </>
+          //     :
+          //     <>
+          //       <span id="titleHome" >Today Journey  </span>
+          //       <CardList data={journey} />
+          //       <span id="titleHome" >All journey </span>
+          //       <CardList data={alljourney} />
+          //     </>
 
 
 
-            }
-          </Col>
+          //   }
+          // </Col> 
+
         )}
       </Row>
     </>

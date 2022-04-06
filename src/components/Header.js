@@ -12,7 +12,7 @@ import logo from "../assets/images/logo.svg"
 import logowhite from "../assets/images/logowhite.svg"
 
 
-const Header = () => {
+const Header = () => {    
   const [state, dispatch] = useContext(UserContext);
 console.log(state)
   const [showSignup, setshowSignup] = useState(false);
@@ -93,8 +93,15 @@ console.log(state)
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-            </Nav>
+         
+          <Nav className="mr-auto">
+          <Link to="/About" className="nav-link">
+            About
+          </Link>
+          <Link to="/profile" className="nav-link">
+            Profile
+          </Link>
+        </Nav>
 
             <div id="userDropd">
               <UserDropdown data={user} dataState={state} />
@@ -112,8 +119,16 @@ console.log(state)
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
+         
             <Nav className="mr-auto">
-            </Nav>
+          <Link to="/About" className="nav-link">
+            About
+          </Link>
+          <Link to="/property" className="nav-link">
+            Profile
+          </Link>
+        </Nav>
+           
             
             <div id="wrapBtnSign">
               <button id="btnLogin" className="my-2" onClick={() => setshow(true)} >

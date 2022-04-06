@@ -20,10 +20,11 @@ function Bookmark() {
   
   const getMyBookmark = async () => {
     try {
-      const response = await API.get("/bookmark");
+      const response = await API.get("/users");
       // Store product data to useState variabel
       // setTransactions(response.data.data.transactions);
       setUserBookmark(response.data.data.bookmarks);
+      console.log(response.data.data.bookmarks);
     } catch (error) {
       console.log(error);
     }
