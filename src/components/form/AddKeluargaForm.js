@@ -14,7 +14,7 @@ import { Editor } from 'react-draft-wysiwyg';
 import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
-function AddWargaForm() {
+function AddKeluargaForm() {
   let history = useHistory();
   const [message, setMessage] = useState(null);
   const [wargaLingkungan, setwargaLingkungan] = useState(null);
@@ -87,7 +87,7 @@ function AddWargaForm() {
       const response = await API.post("/createwarga", formData, config);
       console.log(response);
       // setshow(true)
-      history.push("/warga");
+      // history.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -161,4 +161,4 @@ function AddWargaForm() {
   )
 }
 
-export default AddWargaForm;
+export default AddKeluargaForm;

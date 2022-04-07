@@ -99,9 +99,12 @@ console.log(state)
               {/* <Nav.ItemLink href="home" active>Home</Nav.ItemLink> */}
               {/* <Nav.ItemLink href="profile">Profile</Nav.ItemLink> */}
               <Link to="/warga" id="dropText" >Data Warga</Link>
+              <Link to="/keluarga" id="dropText" >Data Keluarga</Link>
+              <Link to="/hunian" id="dropText" >Data Hunian</Link>
 
               {/* <Nav.ItemLink href="warga">Data Warga</Nav.ItemLink> */}
-              <Nav.ItemLink href="#">About</Nav.ItemLink>
+
+              <Nav.ItemLink href="keluarga"></Nav.ItemLink>
             </Navbar.Nav>
             {/* <Form inline my="2 lg-0">
               <Form.Input type="search" placeholder="Search" mr="sm-2" />

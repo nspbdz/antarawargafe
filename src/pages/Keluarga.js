@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Col, Row,Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import WargaList from "../components/WargaList";
+import KeluargaList from "../components/KeluargaList";
 import { API } from "../config/api";
 import { UserContext } from "../context/userContext";
 import "../styles/customStyle.css";
@@ -37,7 +37,7 @@ const Keluarga = () => {
   
   const getWarga = async () => {
     try {
-      const response = await API.get(`/wargas`);
+      const response = await API.get(`/keluargas`);
       // Store product data to useState variabel
       console.log(response);
       setUserWarga(response.data.data);
@@ -77,7 +77,7 @@ const Keluarga = () => {
 
   const getSearchJourney = async () => {
     try {
-      const response = await API.post(`/search?name=${search}`);
+      const response = await API.post(`/searchkeluarga?search=${search}`);
       // Store product data to useState variabel
       console.log(response)
 
@@ -114,17 +114,17 @@ const Keluarga = () => {
                 {/* <span id="titleHome" >Today Journey  </span>
                 <span id="titleHome" > Top Bookmarked</span>
                 <MostBookmark data={bookmarkMostBookmarked} />*/}
-                 <span id="titleHome" >All Warga </span>
+                 <span id="titleHome" >All Keluarga </span>
               <Button  variant="success" onClick={() => handlePushToDetail()}   >
                   Create
               </Button>
                  
-                 <WargaList data={warga} /> 
+                 <KeluargaList data={warga} /> 
               </>
               :
               <>
-                <span id="titleHome" >Search Warga  </span>
-                <WargaList data={searchJourney} />
+                <span id="titleHome" >Search Keluarga  </span>
+                <KeluargaList data={searchJourney} />
 
               </>
 

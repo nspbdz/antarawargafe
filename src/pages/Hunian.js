@@ -1,55 +1,45 @@
 import { useContext, useEffect, useState } from "react";
-import { Col, Row,Button } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import WargaList from "../components/WargaList";
+import SearchForm from "../components/form/SearchForm";
+import HunianList from "../components/HunianList";
 import { API } from "../config/api";
 import { UserContext } from "../context/userContext";
 import "../styles/customStyle.css";
-import SearchForm from "../components/form/SearchForm"
 
-const Warga = () => {
+const Hunian = () => {
   const router = useHistory();
 
   let history = useHistory();
   const [state, dispatch] = useContext(UserContext);
   const [search, setSearch] = useState("");
-  const [searchJourney, setSearchJourney] = useState([]);
+  const [searchHunian, setSearchHunian] = useState([]);
 
   const [show, setshow] = useState(false);
-  const [dataUser, setDataUser] = useState([]);
   const [NewDataUser, setNewDataUser] = useState(false);
   const [journey, setUserJourney] = useState([]);
-  const [warga, setUserWarga] = useState([]);
-  const [NewJourney, setNewJourney] = useState(false);
+  const [hunian, setHunian] = useState([]);
+  const [NewHunian, setNewHunian] = useState(false);
 
   const [confirm, setConfirm] = useState(null);
-  const [showDelete, setShowDelete] = useState(false);
-  const handleCloseDelete = () => setShowDelete(false);
-  const handleShowDelete = () => setShowDelete(true);
   const [idData, setIdData] = useState(null);
 
-  const handleConfirm = async (id) => {
-    console.log(id)
-    setIdData(id)
-    handleShowDelete();
-  }
-
   
-  const getWarga = async () => {
+  const getHunian = async () => {
     try {
-      const response = await API.get(`/wargas`);
+      const response = await API.get(`/hunians`);
       // Store product data to useState variabel
       console.log(response);
-      setUserWarga(response.data.data);
+      setHunian(response.data.data);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    getWarga();
-  }, [NewJourney]);
-  console.log(warga)
+    getHunian();
+  }, [NewHunian]);
+  console.log(hunian)
 
 
 
@@ -63,25 +53,18 @@ const Warga = () => {
       console.log(error);
     }
   };
-  useEffect(() => {
-    if (confirm) {
-      deleteMyJourney();
-      console.log("confirms")
-      handleCloseDelete();
-      history.push("/");
-    }
-  }, [confirm]);
+ 
 
   console.log(journey)
   console.log(confirm)
 
   const getSearchJourney = async () => {
     try {
-      const response = await API.post(`/searchwarga?search=${search}`);
+      const response = await API.post(`/searchhunian?search=${search}`);
       // Store product data to useState variabel
       console.log(response)
 
-      setSearchJourney(response.data.data);
+      setSearchHunian(response.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -91,9 +74,9 @@ const Warga = () => {
     getSearchJourney();
   }, [search]);
 
-  const handlePushToDetail = (id) => {
+  const handlePushToCreate = (id) => {
     console.log(id);
-    router.push(`addwarga`); 
+    router.push(`addhunian`); 
     // router.push(`warga/${id}`); 
   };
 
@@ -111,23 +94,18 @@ const Warga = () => {
             {search == ""
               ?
               <>
-                {/* <span id="titleHome" >Today Journey  </span>
-                <span id="titleHome" > Top Bookmarked</span>
-                <MostBookmark data={bookmarkMostBookmarked} />*/}
-                 <span id="titleHome" >All Warga </span>
-              <Button  variant="success" onClick={() => handlePushToDetail()}   >
-                  Create
-              </Button>
+                 <span id="titleHome" >All Hunian </span>
+                <Button  variant="success" onClick={() => handlePushToCreate()}   >
+                    Create
+                </Button>
                  
-                 <WargaList data={warga} /> 
+                 <HunianList data={hunian} /> 
               </>
               :
               <>
-                <span id="titleHome" >Search Warga  </span>
-                <WargaList data={searchJourney} />
-
+                <span id="titleHome" >Search Hunian  </span>
+                <HunianList data={searchHunian} />
               </>
-
             }
           </Col>
         )}
@@ -136,4 +114,4 @@ const Warga = () => {
   )
 }
 
-export default Warga
+export default Hunian

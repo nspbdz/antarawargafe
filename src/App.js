@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import Heads from "./components/Heads"
 import Warga from "./pages/Warga";
 import Keluarga from "./pages/Keluarga";
+import Hunian from "./pages/Hunian";
 
 import Bookmark from "./pages/Bookmark";
 import DetailJourney from "./pages/DetailJourney"
@@ -16,8 +17,12 @@ import DetailJourney from "./pages/DetailJourney"
 import ListJourney from "./pages/ListJourney"
 import AddJourney from "./pages/AddJourney"
 import UpdateJourney from "./pages/UpdateJourney"
+
 import AddWarga from "./pages/AddWarga"
 import UpdateWarga from "./pages/UpdateWarga"
+
+import AddHunian from "./pages/AddHunian"
+import UpdateHunian from "./pages/UpdateHunian"
 
 import { API, setAuthToken } from "./config/api";
 
@@ -103,14 +108,20 @@ function App() {
         <Route exact path="/journey/:id" component={DetailJourney} />
         <Route exact path="/listjourney" component={ListJourney} />
         <Route exact path="/addjourney" component={AddJourney} />
-        <Route exact path="/addwarga" component={AddWarga} />
         <Route exact path="/updatejourney/:id" component={UpdateJourney} />
+        <Route exact path="/updatejourney/:id" component={UpdateJourney} />
+      
+        <Route exact path="/addwarga" component={AddWarga} />
         <Route exact path="/Updatewarga/:id" component={UpdateWarga} />
+
+        <Route exact path="/addhunian" component={AddHunian} />
+        <Route exact path="/Updatehunian/:id" component={UpdateHunian} />
         
         {/* <Route exact path="/addJourney" component={AddJourney} /> */}
 
         <Route exact path="/warga" component={Warga} />
         <Route exact path="/keluarga" component={Keluarga} />
+        <Route exact path="/hunian" component={Hunian} />
         <Route exact path="/bookmark" component={Bookmark} />
 
       </Switch>

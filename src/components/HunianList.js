@@ -6,36 +6,18 @@ import { UserContext } from "../context/userContext";
 import Bookmark from "../assets/images/Bookmark.svg";
 import { API } from "../config/api";
 import { useHistory, Router, Link } from "react-router-dom";
-import { BsBookmarkFill, BsBookmark } from "react-icons/bs";
-import ExpendableText from "./ExpendableText"
-import CardItem from "./CardItem";
 
 // import draftToHtml from 'draftjs-to-html';
 
 var striptags = require('striptags');
-function WargaList(props) {
-  const { isBookmark, data, dataBookmark } = props
+function HunianList(props) {
+  const { data, } = props
   let history = useHistory();
-console.log(data);
+  console.log(data);
   const [show, setshow] = useState(false);
   const [dataFilter, setDataFilter] = useState([]);
 
   const [state, dispatch] = useContext(UserContext);
-
-  const handleAddBookmark = async (idJourney) => {
-    console.log("tersubmit")
-    console.log(idJourney)
-    try {
-      //   // e.preventDefault();
-
-      const response = await API.post(`/bookmark/${idJourney}`);
-      console.log(response);
-      history.push("/bookmark");
-
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const handleDeleteBookmark = async (idJourney) => {
     // console.log("terdelete")
@@ -55,10 +37,10 @@ console.log(data);
     history.push("/signup");
   };
 
-  const handlePushToUpdateKeluarga = (id) => {
+  const handlePushToUpdateHunian = (id) => {
     // console.log(id);
 
-    history.push(`updatekeluarga/${id}`);
+    history.push(`updatehunian/${id}`);
   };
   console.log(data);
 
@@ -70,10 +52,11 @@ console.log(data);
         <Table striped bordered hover style={{ width: "1100px" }} >
           <thead style={{ backgroundColor: "#E5E5E5" }}>
             <tr>
-              <th>No</th>
-              <th>Nik</th>
-              <th>Nama</th>
-              <th>Pekerjaan</th>
+            <th>No</th>
+            <th>Blok/No.Rumah</th>
+            <th>Tipe</th>
+            <th>Luas Tanah</th>
+            <th>Luas Bangunan</th>
               <th style={{ textAlign: "center" }}>Action</th>
             </tr>
           </thead>
@@ -90,14 +73,15 @@ console.log(data);
 
                 <tr id="TableStyle" >
                   <td value={item.id}> {item.id}</td>
-                  <td> <p className="tableVal"> {item.nik}</p> </td>
-                  <td> <p className="tableVal"> {item.nama}</p> </td>
-                  <td> <p className="tableVal"> {item.pekerjaan}</p> </td>
+                  <td> <p className="tableVal"> {`Blok.`+ item.nomerblok + ` No.`+ item.nomerrumah}</p> </td>
+                  <td> <p className="tableVal"> {item.tipebangunan}</p> </td>
+                  <td> <p className="tableVal"> {item.luastanah}</p> </td>
+                  <td> <p className="tableVal"> {item.luasbangunan}</p> </td>
                   {/* <td> <p className="tableVal"> {item.job}</p> </td> */}
                   <td  > 
               <Row>
                 {/* <Col sm="6"> <Button variant="danger" onClick={() => CancelStatus(item.id)}> */}
-                <Col sm="6"> <Button variant="success" onClick={() => handlePushToUpdateKeluarga(item.id)} >
+                <Col sm="6"> <Button variant="success" onClick={() => handlePushToUpdateHunian(item.id)} >
                   Ubah
                 </Button></Col>
                 <Col sm="5">  <Button  variant="danger" >
@@ -137,4 +121,4 @@ console.log(data);
   );
 }
 
-export default WargaList;
+export default HunianList;

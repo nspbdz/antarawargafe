@@ -13,7 +13,7 @@ import CardItem from "./CardItem";
 // import draftToHtml from 'draftjs-to-html';
 
 var striptags = require('striptags');
-function WargaList(props) {
+function KeluargaList(props) {
   const { isBookmark, data, dataBookmark } = props
   let history = useHistory();
 console.log(data);
@@ -55,7 +55,7 @@ console.log(data);
     history.push("/signup");
   };
 
-  const handlePushToUpdateKeluarga = (id) => {
+  const handlePushToUpdateWarga = (id) => {
     // console.log(id);
 
     history.push(`updatekeluarga/${id}`);
@@ -97,7 +97,7 @@ console.log(data);
                   <td  > 
               <Row>
                 {/* <Col sm="6"> <Button variant="danger" onClick={() => CancelStatus(item.id)}> */}
-                <Col sm="6"> <Button variant="success" onClick={() => handlePushToUpdateKeluarga(item.id)} >
+                <Col sm="6"> <Button variant="success" onClick={() => handlePushToUpdateWarga(item.id)} >
                   Ubah
                 </Button></Col>
                 <Col sm="5">  <Button  variant="danger" >
@@ -137,4 +137,4 @@ console.log(data);
   );
 }
 
-export default WargaList;
+export default KeluargaList;
