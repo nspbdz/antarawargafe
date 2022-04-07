@@ -7,6 +7,8 @@ import Header from "./components/Header";
 // import Header from "./components/Header";
 import Heads from "./components/Heads"
 import Warga from "./pages/Warga";
+import Keluarga from "./pages/Keluarga";
+
 import Bookmark from "./pages/Bookmark";
 import DetailJourney from "./pages/DetailJourney"
 // import AddJourney from "./pages/AddJourney"
@@ -108,6 +110,7 @@ function App() {
         {/* <Route exact path="/addJourney" component={AddJourney} /> */}
 
         <Route exact path="/warga" component={Warga} />
+        <Route exact path="/keluarga" component={Keluarga} />
         <Route exact path="/bookmark" component={Bookmark} />
 
       </Switch>
