@@ -101,6 +101,7 @@ console.log(state)
               <Link to="/warga" id="dropText" >Data Warga</Link>
               <Link to="/keluarga" id="dropText" >Data Keluarga</Link>
               <Link to="/hunian" id="dropText" >Data Hunian</Link>
+              <Link to="/status" id="dropText" >Data Status</Link>
 
               {/* <Nav.ItemLink href="warga">Data Warga</Nav.ItemLink> */}
 
