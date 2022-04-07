@@ -114,7 +114,7 @@ const Warga = () => {
                 {/* <span id="titleHome" >Today Journey  </span>
                 <span id="titleHome" > Top Bookmarked</span>
                 <MostBookmark data={bookmarkMostBookmarked} />*/}
-                 <span id="titleHome" >All Journey </span>
+                 <span id="titleHome" >All Warga </span>
               <Button  variant="success" onClick={() => handlePushToDetail()}   >
                   Create
               </Button>
@@ -123,7 +123,7 @@ const Warga = () => {
               </>
               :
               <>
-                <span id="titleHome" >Search Journey  </span>
+                <span id="titleHome" >Search Warga  </span>
                 <WargaList data={searchJourney} />
 
               </>

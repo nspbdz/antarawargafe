@@ -91,8 +91,8 @@ console.log(data);
                 <tr id="TableStyle" >
                   <td value={item.id}> {item.id}</td>
                   <td> <p className="tableVal"> {item.nik}</p> </td>
-                  <td> <p className="tableVal"> {item.name}</p> </td>
-                  <td> <p className="tableVal"> {item.job}</p> </td>
+                  <td> <p className="tableVal"> {item.nama}</p> </td>
+                  <td> <p className="tableVal"> {item.pekerjaan}</p> </td>
                   {/* <td> <p className="tableVal"> {item.job}</p> </td> */}
                   <td  > 
               <Row>

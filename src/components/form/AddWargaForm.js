@@ -76,7 +76,7 @@ function AddWargaForm() {
       // Store data with FormData as object
       const formData = new FormData();
       formData.set("nik", form.nik);
-      formData.set("name", form.name);
+      formData.set("nama", form.nama);
       formData.set("tempatlahir", form.tempatlahir);
       formData.set("tanggallahir", form.tanggallahir);
       formData.set("pekerjaan", form.pekerjaan);
@@ -87,7 +87,7 @@ function AddWargaForm() {
       const response = await API.post("/createwarga", formData, config);
       console.log(response);
       // setshow(true)
-      history.push("/");
+      // history.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -105,8 +105,8 @@ function AddWargaForm() {
           <Form.Group className="mb-3" controlId="nik">
            <Form.Control type="text" placeholder="nik" name="nik" value={dataUpdate.nik} onChange={handleChange} />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="name">
-            <Form.Control type="text" placeholder="name"  name="name" value={dataUpdate.name} onChange={handleChange} />
+          <Form.Group className="mb-3" controlId="nama">
+            <Form.Control type="text" placeholder="nama"  name="nama" value={dataUpdate.nama} onChange={handleChange} />
           </Form.Group>
         
           <Form.Group className="mb-3" controlId="pekerjaan">
@@ -116,6 +116,7 @@ function AddWargaForm() {
             <Form.Control type="text" placeholder="tempatlahir" name="tempatlahir" value={dataUpdate.tempatlahir} onChange={handleChange} />
           </Form.Group>
           
+        
           <Form.Group className="mb-3" controlId="tanggallahir">
             <Form.Control type="date" placeholder="tanggallahir" name="tanggallahir" value={dataUpdate.tanggallahir} onChange={handleChange} />
           </Form.Group>
@@ -126,6 +127,10 @@ function AddWargaForm() {
                 // checked=
                 onChange={onSiteChanged}
               />
+              &nbsp;
+              warga Lingkungan
+              &nbsp;
+              
               <input
                 type="radio"
                 name="site_name"
@@ -133,6 +138,8 @@ function AddWargaForm() {
                 // checked=
                 onChange={onSiteChanged}
               />
+               &nbsp;
+              warga Luar Lingkungan
           {/* <InputGroup>
           <InputGroup.Radio value="1" name="wargalingkungan" aria-label="Radio 1" />Warga Lingkungan
           <InputGroup.Radio value="2" name="wargalingkungan" aria-label="Radio 2" />Warga Luar Lingkungan

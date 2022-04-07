@@ -9,13 +9,15 @@ import { CgAttachment } from "react-icons/cg";
 import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { convertToRaw, convertFromRaw,  } from 'draft-js';
 import { useParams, useLocation } from "react-router-dom";
-
+// import moment from 'react-moment'; 
+import moment from "moment";
 
 var striptags = require('striptags');
 function UpdateWargaForm({ match }) {
   // const DetailJourney = ({ match }) => {
   let history = useHistory();
   let { id } = useParams();
+  const [lingkungan, setLingkungan] = useState(null);
 
   const [NewJourney, setNewJourney] = useState(false);
   const [loadNewJourney, setLoadNewJourney] = useState(false);
@@ -29,34 +31,34 @@ function UpdateWargaForm({ match }) {
   const [preview, setPreview] = useState([])
   const [formData, setFormData] = useState([])
   const [message, setMessage] = useState(null);
-  const [journey, setJourney] = useState({});
+  const [warga, setWarga] = useState({});
+
   const [form, setForm] = useState({
-    nik: journey.nik,
-    name: journey.name,
-    tempatlahir: journey.placeofbirth,
-    pekerjaan: journey.pekerjaan,
-    tanggallahir: journey.birthdate,
-    wargalingkungan: journey.wargalingkungan,
-    
+    // nik: warga.nik,
+    // nama: warga.nama,
+    // tempatlahir: warga.tempatlahir,
+    // pekerjaan: warga.pekerjaan,
+    // tanggallahir: warga.tanggallahir,
+    // wargalingkungan: warga.wargalingkungan,
     
   }); 
   
   //Store product data
-  const getJourney = async (id) => {
+  const getWarga = async (id) => {
     try {
       const response = await API.get(`/warga/${id}`);
       // Store product data to useState variabel
       console.log(response)
-      setJourney(response.data.data);
+      setWarga(response.data.data);
       if (response.status == 200) {
         console.log("suksess")
         setForm({
           nik: response.data.data.nik,
-          name: response.data.data.name,
-          tempatlahir: response.data.data.placeofbirth,
+          nama: response.data.data.nama,
+          tempatlahir: response.data.data.tempatlahir,
           pekerjaan: response.data.data.pekerjaan,
-          tanggallahir: response.data.data.birthdate,
-          wargalingkungan: response.data.data.wargalingkungan,
+          tanggallahir: response.data.data.tanggallahir,
+          iswarga_lingkungan: response.data.data.iswarga_lingkungan,
           
         });
       }
@@ -66,12 +68,32 @@ function UpdateWargaForm({ match }) {
     }
   };
   
+  const getIsWargaLingkungan = async (id) => {
+    try {
+      const response = await API.get(`/warga/${id}`);
+      // Store product data to useState variabel
+      console.log(response)
+      // setWarga(response.data.data);
+      if (response.status == 200) {
+        console.log("suksess")
+        setLingkungan(response.data.data.iswarga_lingkungan);
+      }
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
   useEffect(() => {
-    getJourney(id)
-    console.log(journey)
+    getWarga(id)
+    console.log(setWarga)
   }, [NewJourney]);
-  console.log(form)
-  console.log(form.nik)
+  useEffect(() => {
+    getIsWargaLingkungan(id)
+    console.log(lingkungan)
+  }, [NewJourney]);
+  // console.log(form)
+  // console.log(form.nik)
   
   const handleChange = (e) => {
     const a = e.target.value
@@ -93,23 +115,23 @@ function UpdateWargaForm({ match }) {
     }
     
   }
+  console.log(lingkungan)
+
   const handleOnSubmit = async (e) => {
     console.log("tersubmit")
     try {
       e.preventDefault();
-      // Configuration
-      const config = {
-        headers: {
-          "Content-type": "multipart/form-data",
-        },
+    
+      const data = {
+        nik: form.nik,
+        nama: form.nama,
+      tempatlahir: form.tempatlahir,
+      tanggallahir: form.tanggallahir,
+      pekerjaan: form.pekerjaan,
+       iswargaLingkungan: lingkungan,
       };
-      // Store data with FormData as object
-      const formData = new FormData();
-      formData.append("image", form.image, form.image.name);
-      formData.set("title", form.title);
-      console.log(formData);
       
-      const response = await API.patch(`/journey/${id}`, formData, config);
+      const response = await API.put(`/updatewarga/${id}`, data,);
       console.log(response);
       // setshow(true)
       history.push("/");
@@ -117,35 +139,38 @@ function UpdateWargaForm({ match }) {
       console.log(error);
     }
   };
-  // console.log(form.birthdate);
+  // console.log(form.tanggallahir);
   
+  console.log(form.tanggallahir);
+  // const today =  form.tanggallahir
+  let today  = new Date(form.tanggallahir);
+  const asd=moment(today).format("YYYY-DD-MM")
+  console.log(asd);
+
+    const [gender, setGender] = useState("Female");
+  
+   
+    const onSiteChanged = (e) => {
+      setLingkungan(e.target.value);
+      console.log(e.target.value);
+      
+    }
   return (
     <Container>
       <Row>
         <Col>
 
           <>
-            <Form
-              className="formStyle" style={{ marginTop: "40px" }}
-              onSubmit={handleOnSubmit}
-              >
+        
+          <Form className="formStyle"  style={{marginTop:"40px"}} onSubmit={handleOnSubmit}> 
+        
               <Form.Group>
                 <Form.Control id="formProducts"
-                  name="nik"
+                  name="nama"
                   type="text"
                   required
-                  placeholder="nik"
-                  value={form.nik}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Control id="formProducts"
-                  name="name"
-                  type="text"
-                  required
-                  placeholder="name"
-                  value={form.name}
+                  placeholder="nama"
+                  value={form.nama}
                   onChange={handleChange}
                 />
               </Form.Group>
@@ -158,10 +183,35 @@ function UpdateWargaForm({ match }) {
                   value={form.tempatlahir}
                   onChange={handleChange}
                 />
+                
+              </Form.Group>
+              <Form.Group>
+                <Form.Control id="formProducts"
+                  name="pekerjaan"
+                  type="text"
+                  required
+                  placeholder="pekerjaan"
+                  value={form.pekerjaan}
+                  onChange={handleChange}
+                />
+                
               </Form.Group>
               <Form.Group className="mb-3" controlId="tanggallahir">
-            <Form.Control type="date" placeholder="tanggallahir" name="tanggallahir" value={form.tanggallahir} onChange={handleChange} />
-          </Form.Group>
+              <Form.Control
+              type="date"
+                placeholder="tanggallahir"
+                name="tanggallahir" 
+                //  value={tanggal} 
+                value={asd}
+            
+                onChange={handleChange} />
+                </Form.Group>
+                <div onChange={onSiteChanged}>
+                <input type="radio" value="1" name="warga_lingkungan" checked={lingkungan === 1} />    &nbsp; warga Lingkungan &nbsp;
+
+                <input type="radio" value="2" name="warga_lingkungan" checked={lingkungan === 2}/>  &nbsp; warga Luar Lingkungan
+              </div>
+
               <div id="btnAddWrap">
                 <Button id="btnAdd" type="submit"  >
                   Update Journey
