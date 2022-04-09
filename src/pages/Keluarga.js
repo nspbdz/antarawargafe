@@ -93,7 +93,7 @@ const Keluarga = () => {
 
   const handlePushToDetail = (id) => {
     console.log(id);
-    router.push(`addwarga`); 
+    router.push(`addkeluarga`); 
     // router.push(`warga/${id}`); 
   };
 

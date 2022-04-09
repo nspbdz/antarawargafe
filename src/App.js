@@ -23,6 +23,9 @@ import UpdateJourney from "./pages/UpdateJourney"
 import AddWarga from "./pages/AddWarga"
 import UpdateWarga from "./pages/UpdateWarga"
 
+import AddKeluarga from "./pages/AddKeluarga"
+import UpdateKeluarga from "./pages/UpdateKeluarga"
+
 import AddHunian from "./pages/AddHunian"
 import UpdateHunian from "./pages/UpdateHunian"
 
@@ -122,6 +125,9 @@ function App() {
       
         <Route exact path="/addwarga" component={AddWarga} />
         <Route exact path="/Updatewarga/:id" component={UpdateWarga} />
+
+        <Route exact path="/addkeluarga" component={AddKeluarga} />
+        <Route exact path="/Updatekeluarga/:id" component={UpdateKeluarga} />
 
         <Route exact path="/addhunian" component={AddHunian} />
         <Route exact path="/Updatehunian/:id" component={UpdateHunian} />

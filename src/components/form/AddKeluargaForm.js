@@ -12,12 +12,17 @@ import { CgAttachment } from "react-icons/cg";
 import { EditorState, Modifier, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 
-function AddKeluargaForm() {
+function AddKeluargaForm(props) {
+  const { dataHunian,dataWarga } = props
+
   let history = useHistory();
   const [message, setMessage] = useState(null);
   const [wargaLingkungan, setwargaLingkungan] = useState(null);
+  const [hunian, setHunian] = useState([])
+  const [kepemilikan, setKepemilikan] = useState([])
+  const [fruit, setFruit] = useState();
 
   const [valueEditor, setValueEditor] = useState(EditorState.createEmpty());
   const [dataUpdate, setDataUpdate] = useState([])
@@ -37,7 +42,65 @@ function AddKeluargaForm() {
   
   }
   console.log(wargaLingkungan);
+  
+  var hunianData = [];
+  dataHunian.map((item,i) => 
+  {
+    hunianData.push({
+      id: item.id,
+      name:" Blok " + item.nomerblok + " No."  + item.nomerrumah ,
+  });
+  });
+  console.log(hunianData);
 
+  var kepemilikanData = [];
+  dataWarga.map((item,i) => 
+  {
+    kepemilikanData.push({
+      id: item.id,
+      name: item.nama,
+  });
+  });
+  console.log(kepemilikanData);
+  
+
+ const handleOnSearch = (string, results) => {
+      // onSearch will have as the first callback parameter
+      // the string searched and for the second the results.
+      console.log(string, results)
+    }
+    const handleOnSelect = (item) => {
+      // the item selected
+      console.log(item)
+      setHunian(item.id);
+    }
+    const handleOnHover = (result) => {
+      console.log(result);
+    };
+  
+    const handleOnFocus = () => {
+      console.log("Focused");
+    };
+    
+   
+    const handleOnSelectKepemilikan = (item) => {
+      // the item selected
+      console.log(item)
+      setKepemilikan(item.id);
+    }
+  
+    const formatResult = (item) => {
+      console.log(item)
+      console.log(formatResult)
+      return (
+        <>
+        
+          {/* <span style={{ display: 'block', textAlign: 'left' }}>id: {item.id}</span> */}
+          <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span>
+        </>
+      )
+    }
+ 
 
   const handleChange = (e) => {
     const a = e.target.value
@@ -100,58 +163,69 @@ function AddKeluargaForm() {
       <Row>
         <Col>
           <>
+          <div style={{ marginTop: 20, marginBottom: 20 }}>Create Keluarga</div>
           <Form className="formStyle"  style={{marginTop:"40px"}} onSubmit={handleOnSubmit}> 
-         <h4 className="titleForm"> Product</h4>
-          <Form.Group className="mb-3" controlId="nik">
-           <Form.Control type="text" placeholder="nik" name="nik" value={dataUpdate.nik} onChange={handleChange} />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="nama">
-            <Form.Control type="text" placeholder="nama"  name="nama" value={dataUpdate.nama} onChange={handleChange} />
-          </Form.Group>
         
-          <Form.Group className="mb-3" controlId="pekerjaan">
-            <Form.Control type="text" placeholder="pekerjaan" name="pekerjaan" value={dataUpdate.pekerjaan} onChange={handleChange} />
+          <Form.Group className="mb-3" controlId="nokk">
+           <Form.Control type="text" placeholder="No.Kartu Keluarga" name="nokk" value={dataUpdate.nokk} onChange={handleChange} />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="tempatlahir">
-            <Form.Control type="text" placeholder="tempatlahir" name="tempatlahir" value={dataUpdate.tempatlahir} onChange={handleChange} />
-          </Form.Group>
-          
-        
-          <Form.Group className="mb-3" controlId="tanggallahir">
-            <Form.Control type="date" placeholder="tanggallahir" name="tanggallahir" value={dataUpdate.tanggallahir} onChange={handleChange} />
-          </Form.Group>
-          <input
-                type="radio"
-                name="site_name"
-                value="1"
-                // checked=
-                onChange={onSiteChanged}
-              />
-              &nbsp;
-              warga Lingkungan
-              &nbsp;
-              
-              <input
-                type="radio"
-                name="site_name"
-                value="2"
-                // checked=
-                onChange={onSiteChanged}
-              />
-               &nbsp;
-              warga Luar Lingkungan
-          {/* <InputGroup>
-          <InputGroup.Radio value="1" name="wargalingkungan" aria-label="Radio 1" />Warga Lingkungan
-          <InputGroup.Radio value="2" name="wargalingkungan" aria-label="Radio 2" />Warga Luar Lingkungan
-        </InputGroup> */}
 
-       <br/>
-              <div id="btnAddWrap">
-                <Button id="btnAdd" type="submit"  >
-                  Add Journey
-              </Button>
-              </div>
-            </Form>
+          <div style={{ width: 300, margin: 20 }}>
+        
+            <div style={{ marginBottom: 20 }}>Hunian</div>
+            <ReactSearchAutocomplete
+              items={hunianData}
+              onSearch={handleOnSearch}
+              onHover={handleOnHover}
+              onSelect={handleOnSelect}
+              onFocus={handleOnFocus}
+              formatResult={formatResult}
+
+              // onClear={handleOnClear}
+              styling={{ zIndex: 4 }} // To display it on top of the search box below
+              autoFocus
+            />
+          </div>
+          <div style={{ width: 300, margin: 20 }}>
+          
+            <div style={{ marginBottom: 20 }}>Kepala Keluarga</div>
+            <ReactSearchAutocomplete
+              items={kepemilikanData}
+              onSearch={handleOnSearch}
+              onHover={handleOnHover}
+              onSelect={handleOnSelectKepemilikan}
+              onFocus={handleOnFocus}
+              formatResult={formatResult}
+
+              // onClear={handleOnClear}
+              styling={{ zIndex: 4 }} // To display it on top of the search box below
+              autoFocus
+            />
+          </div>
+          <div style={{ marginBottom: 20 }}>Status Hunian</div>
+
+
+          <select id="fruits" value={fruit} 
+              onChange={(e) => setFruit(e.target.value)}>
+            <option value="sewa">Sewa</option>
+            <option value="miliksendiri">Milik Sendiri</option>
+          </select>
+          <div style={{ marginBottom: 20 }}> </div>
+          
+          {/* <h1>Selected Fruit: {fruit}</h1> */}
+     
+          <div style={{ marginBottom: 20 }}>Status </div>
+          <Form.Group className="mb-3" controlId="nokk">
+           <Form.Control type="text" placeholder="nokk" name="nokk" value={dataUpdate.nokk} onChange={handleChange} />
+          </Form.Group>
+      
+          <br/>
+          <div id="btnAddWrap">
+            <Button id="btnAdd" type="submit"  >
+              Add Keluarga
+          </Button>
+          </div>
+        </Form>
 
           </>
 

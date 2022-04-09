@@ -12,7 +12,6 @@ import { CgAttachment } from "react-icons/cg";
 import { EditorState, Modifier, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 
 function AddKepemilikanForm(props) {
@@ -39,8 +38,6 @@ console.log(dataPemilik);
   }); //Store product data
 
   var hunianData = [];
-
-
   dataHunian.map((item,i) => 
   {
     hunianData.push({
