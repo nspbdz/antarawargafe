@@ -10,6 +10,7 @@ import Warga from "./pages/Warga";
 import Keluarga from "./pages/Keluarga";
 import Hunian from "./pages/Hunian";
 import Status from "./pages/Status";
+import Kepemilikan from "./pages/Kepemilikan";
 
 import Bookmark from "./pages/Bookmark";
 import DetailJourney from "./pages/DetailJourney"
@@ -27,6 +28,10 @@ import UpdateHunian from "./pages/UpdateHunian"
 
 import AddStatus from "./pages/AddStatus"
 import UpdateStatus from "./pages/UpdateStatus"
+
+import AddKepemilikan from "./pages/AddKepemilikan"
+import UpdateKepemilikan from "./pages/UpdateKepemilikan"
+
 
 import { API, setAuthToken } from "./config/api";
 
@@ -123,11 +128,17 @@ function App() {
         
         <Route exact path="/addstatus" component={AddStatus} />
         <Route exact path="/Updatestatus/:id" component={UpdateStatus} />
-      
+       
+        <Route exact path="/addkepemilikan" component={AddKepemilikan} />
+        <Route exact path="/Updatekepemilikan/:id" component={UpdateKepemilikan} />
+       
         <Route exact path="/warga" component={Warga} />
         <Route exact path="/keluarga" component={Keluarga} />
         <Route exact path="/hunian" component={Hunian} />
         <Route exact path="/status" component={Status} />
+        <Route exact path="/kepemilikan" component={Kepemilikan} />
+
+        
         <Route exact path="/bookmark" component={Bookmark} />
 
       </Switch>

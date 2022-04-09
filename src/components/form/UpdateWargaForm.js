@@ -131,7 +131,7 @@ function UpdateWargaForm({ match }) {
        iswargaLingkungan: lingkungan,
       };
       
-      const response = await API.put(`/updatewarga/${id}`, data,);
+      const response = await API.put(`/warga/${id}`, data,);
       console.log(response);
       // setshow(true)
       history.push("/");

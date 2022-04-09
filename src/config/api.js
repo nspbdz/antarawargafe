@@ -3,6 +3,8 @@ import axios from "axios";
 // Create base URL API
 export const API = axios.create({
   baseURL: "http://127.0.0.1:8000/api/",
+  // baseURL: "https://jsonplaceholder.typicode.com/todos",
+  
   // baseURL: "https://warga-app.herokuapp.com/api/",
 
 
