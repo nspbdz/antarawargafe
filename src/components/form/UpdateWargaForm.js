@@ -144,8 +144,8 @@ function UpdateWargaForm({ match }) {
   console.log(form.tanggallahir);
   // const today =  form.tanggallahir
   let today  = new Date(form.tanggallahir);
-  const asd=moment(today).format("YYYY-DD-MM")
-  console.log(asd);
+  const dataTanggal=moment(today).format("YYYY-DD-MM")
+  console.log(dataTanggal);
 
     const [gender, setGender] = useState("Female");
   
@@ -202,7 +202,7 @@ function UpdateWargaForm({ match }) {
                 placeholder="tanggallahir"
                 name="tanggallahir" 
                 //  value={tanggal} 
-                value={asd}
+                value={dataTanggal}
             
                 onChange={handleChange} />
                 </Form.Group>

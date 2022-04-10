@@ -44,10 +44,11 @@ console.log(data);
   const handlePushToUpdateWarga = (id) => {
     // console.log(id);
 
-    history.push(`warga/${id}`);
+    history.push(`updatewarga/${id}`);
   };
   console.log(data);
 
+  
   return (
     <>
     <Row>

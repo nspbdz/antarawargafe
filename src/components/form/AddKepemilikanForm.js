@@ -24,8 +24,6 @@ console.log(dataPemilik);
   const [wargaLingkungan, setwargaLingkungan] = useState(null);
   const [hunian, setHunian] = useState([])
   const [kepemilikan, setKepemilikan] = useState([])
-
-  const [valueEditor, setValueEditor] = useState(EditorState.createEmpty());
   const [dataUpdate, setDataUpdate] = useState([])
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -55,10 +53,8 @@ console.log(dataPemilik);
       name: item.nama,
   });
   });
-  console.log(kepemilikanData);
-  
-    
-  
+
+   console.log(kepemilikanData);
     const handleOnSearch = (string, results) => {
       // onSearch will have as the first callback parameter
       // the string searched and for the second the results.
@@ -137,7 +133,6 @@ console.log(dataPemilik);
       formData.set("tanggalkepemilikan", form.tanggalkepemilikan);
       formData.set("idhunian", hunian);
       formData.set("idwarga", kepemilikan);
-      // formData.set("description", JSON.stringify(convertToRaw(valueEditor.getCurrentContent())));
       console.log(formData);
 
       const response = await API.post("/createkepemilikan", formData, config);
@@ -150,7 +145,6 @@ console.log(dataPemilik);
   };
   // arr.push(yearStart++);
  
-  console.log(valueEditor)
   return (
     //  <p>add journey</p>
     <Container>
@@ -191,21 +185,6 @@ console.log(dataPemilik);
             autoFocus
           />
         </div>
-        {/* <Col md={3}>
-
-        <div style={{ width: 400 }}>
-        <ReactSearchAutocomplete
-          items={kepemilikanData}
-          onSearch={handleOnSearch}
-          onSelect={handleOnSelectKepemilikan}
-          autoFocus
-          formatResult={formatResult}
-          onHover={handleOnHover}
-          onFocus={handleOnFocus}
-          styling={{ zIndex: 3 }} // To display it on top of the search box below
-          />
-        </div>
-          </Col> */}
             
           <Form.Group className="mb-3" controlId="tanggalkepemilikan">
             <Form.Control type="date" placeholder="tanggalkepemilikan" name="tanggalkepemilikan" value={dataUpdate.tanggalkepemilikan} onChange={handleChange} />

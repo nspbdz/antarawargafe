@@ -1,50 +1,29 @@
 import { Card, Button, Row, Col, Container,Table } from "react-bootstrap";
-import ModalSignin from "./modal/ModalSignin";
 import { useState, useContext, useRef, useEffect } from "react";
 import "../styles/customStyle.css";
 import { UserContext } from "../context/userContext";
-import Bookmark from "../assets/images/Bookmark.svg";
 import { API } from "../config/api";
 import { useHistory, Router, Link } from "react-router-dom";
 
-// import draftToHtml from 'draftjs-to-html';
-
-var striptags = require('striptags');
-function KepemilikanList(props) {
-  const { data, } = props
+function KeluargaList(props) {
+  const {data } = props
   let history = useHistory();
   console.log(data);
   const [show, setshow] = useState(false);
   const [dataFilter, setDataFilter] = useState([]);
-
   const [state, dispatch] = useContext(UserContext);
 
-  const handleDeleteBookmark = async (idJourney) => {
-    // console.log("terdelete")
-    try {
-      //   // e.preventDefault();
-
-      const response = await API.delete(`/bookmark/${idJourney}`);
-      // console.log(response);
-      // setshow(true)
-      history.push("/bookmark");
-
-    } catch (error) {
-      console.log(error);
-    }
-  };
+ 
   const handlePushToSignUp = () => {
     history.push("/signup");
   };
 
-  const handlePushToUpdateStatus = (id) => {
+  const handlePushToUpdateKeluarga = (id) => {
     // console.log(id);
-
-    history.push(`updatekepemilikan/${id}`);
+    history.push(`updatekeluarga/${id}`);
   };
   console.log(data);
-   
-  
+
   return (
     <>
     <Row>
@@ -53,10 +32,10 @@ function KepemilikanList(props) {
         <Table striped bordered hover style={{ width: "1100px" }} >
           <thead style={{ backgroundColor: "#E5E5E5" }}>
             <tr>
-            <th>No</th>
-            <th>Blok/No.Rumah</th>
-            <th>name</th>
-            <th>Status Pemilik</th>
+              <th>No</th>
+              <th>Nama</th>
+              <th>Nik</th>
+              <th>Status</th>
               <th style={{ textAlign: "center" }}>Action</th>
             </tr>
           </thead>
@@ -64,26 +43,24 @@ function KepemilikanList(props) {
           {data?.length <= 0 && (
             // <img src={not_found} width="100%" height="100%" alt="not found" />
             <>
-            <div>data kosong</div>
+            
             </>
           )}
-
-
           {data?.length > 0 &&
             data?.map((item, index) => (
               <tbody style={{ backgroundColor: "#FFFFFF" }} key={index}>
 
                 <tr id="TableStyle" >
-                  <td value={item.idkepemilikan}> {item.idkepemilikan}</td>
+                  <td value={item.id}> {item.id}</td>
                   <td> <p className="tableVal"> {item.namaWarga}</p> </td>
-                  <td> <p className="tableVal"> {`Blok.`+ item.nomerblok + ` No.`+ item.nomerrumah}</p> </td>
-                  <td> <p className="tableVal"> {item.iswarga_lingkungan == 1 ?"Warga Lingkungan":"Warga Luar Lingkungan"}</p> </td>
-                 
-                  
+                  <td> <p className="tableVal"> {item.nik}</p> </td>
+                  <td> <p className="tableVal"> {item.namaStatus}</p> </td>
+                  {/* <td> <p className="tableVal"> {`Blok.`+ item.nomerblok + ` No.`+ item.nomerrumah}</p> </td> */}
+                  {/* <td> <p className="tableVal"> {item.hunianstatus == 1 ?"Milik Sendiri":"Sewa"}</p> </td> */}
                   <td  > 
               <Row>
                 {/* <Col sm="6"> <Button variant="danger" onClick={() => CancelStatus(item.id)}> */}
-                <Col sm="6"> <Button variant="success" onClick={() => handlePushToUpdateStatus(item.id)} >
+                <Col sm="6"> <Button variant="success" onClick={() => handlePushToUpdateKeluarga(item.id)} >
                   Ubah
                 </Button></Col>
                 <Col sm="5">  <Button  variant="danger" >
@@ -92,13 +69,30 @@ function KepemilikanList(props) {
                 </Button></Col>
                 <Col sm="1"></Col>
               </Row>
+              
+              
+            
               </td>
+
                 </tr>
+
               </tbody>
 
             ))}
         </Table>
-     
+        {/* <ModalUpdateTransaction 
+        setConfirmApprove={setConfirmApprove}
+        show={show}
+        handleClose={handleClose}
+
+        handleApproveConfirm={handleApproveConfirm}
+          />
+        <ModalUpdateCancelTransaction 
+        setConfirmCancel={setConfirmCancel}
+        show={showCancel}
+        handleCloseCancel={handleCloseCancel}
+        handleCancelConfirm={handleCancelConfirm}
+          /> */}
       </Col>
     </Row>
   </>
@@ -106,4 +100,4 @@ function KepemilikanList(props) {
   );
 }
 
-export default KepemilikanList;
+export default KeluargaList;

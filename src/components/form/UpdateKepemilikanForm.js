@@ -11,50 +11,128 @@ import { convertToRaw, convertFromRaw,  } from 'draft-js';
 import { useParams, useLocation } from "react-router-dom";
 // import moment from 'react-moment'; 
 import moment from "moment";
-
+import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 var striptags = require('striptags');
-function UpdateKepemilikanForm({ match }) {
+function UpdateKepemilikanForm({ match, }) {
+
+  // const { dataHunian,dataPemilik } = props
+
   // const DetailJourney = ({ match }) => {
   let history = useHistory();
   let { id } = useParams();
-  const [NewHunian, setNewHunian] = useState(false);
-  const [message, setMessage] = useState(null);
-  const [hunian, setHunian] = useState({});
-  const [form, setForm] = useState({
 
-  }); 
+  const [message, setMessage] = useState(null);
+  const [wargaLingkungan, setwargaLingkungan] = useState(null);
+  const [hunian, setHunian] = useState([])
+  const [dataKepemilikan, setDataKepemilikan] = useState([])
+
+  const [kepemilikan, setKepemilikan] = useState([])
+  const [dataUpdate, setDataUpdate] = useState([])
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const [form, setForm] = useState({});
+
+  const [newKepemilikan, setNewKepemilikan] = useState(false);
   
-  //Store product data
-  const getHunian = async (id) => {
+  const [NewDataHunian, setNewDataHunian] = useState(false);
+  const [dataHunian, setDataHunian] = useState([]);
+
+  const [NewDataKeluarga, setNewDataKeluarga] = useState(false);
+  const [dataKeluarga, setDataKeluarga] = useState([]);
+
+  const [NewDataPemilik, setNewDataPemilik] = useState(false);
+  const [dataPemilik, setDataPemilik] = useState([]);
+
+
+  
+
+  const getAllHunian = async () => {
     try {
-      const response = await API.get(`/hunian/${id}`);
+      const response = await API.get("/hunians");
       // Store product data to useState variabel
-      console.log(response)
-      setHunian(response.data.data);
-      if (response.status == 200) {
-        console.log("suksess")
-        setForm({
-          nomerblok: response.data.data.nomerblok,
-          nomerrumah: response.data.data.nomerrumah,
-          tipebangunan: response.data.data.tipebangunan,
-          luastanah: response.data.data.luastanah,
-          luasbangunan: response.data.data.luasbangunan,
-          wargalingkungan: response.data.data.wargalingkungan,
-          
-        });
-      }
-      
+      setDataHunian(response.data.data);
+      // console.log(response);
     } catch (error) {
       console.log(error);
     }
   };
-  
-  
-  
+
   useEffect(() => {
-    getHunian(id)
-    console.log(setHunian)
-  }, [NewHunian]);
+    getAllHunian();
+  }, [NewDataHunian]);
+
+  const getPemilik = async () => {
+    try {
+      const response = await API.get("/wargas");
+      // Store product data to useState variabel
+      setDataPemilik(response.data.data);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getPemilik();
+  }, [NewDataPemilik]);
+
+
+  var hunianData = [];
+  dataHunian.map((item,i) => 
+  {
+    hunianData.push({
+      id: item.id,
+      name:" Blok " + item.nomerblok + " No."  + item.nomerrumah ,
+  });
+  });
+  console.log(hunianData);
+
+  var kepemilikanData = [];
+  dataPemilik.map((item,i) => 
+  {
+    kepemilikanData.push({
+      id: item.id,
+      name: item.nama,
+  });
+  });
+
+    console.log(kepemilikanData);
+    const handleOnSearch = (string, results) => {
+      // onSearch will have as the first callback parameter
+      // the string searched and for the second the results.
+      console.log(string, results)
+    }
+    const handleOnSelect = (item) => {
+      // the item selected
+      console.log(item)
+      setHunian(item.id);
+    }
+    const handleOnHover = (result) => {
+      console.log(result);
+    };
+  
+    const handleOnFocus = () => {
+      console.log("Focused");
+    };
+   
+    const handleOnSelectKepemilikan = (item) => {
+      // the item selected
+      console.log(item)
+      setKepemilikan(item.id);
+    }
+  
+    const formatResult = (item) => {
+      console.log(item)
+      console.log(formatResult)
+      return (
+        <>
+          {/* <span style={{ display: 'block', textAlign: 'left' }}>id: {item.id}</span> */}
+          <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span>
+        </>
+      )
+    }
  
   const handleChange = (e) => {
     const a = e.target.value
@@ -62,122 +140,114 @@ function UpdateKepemilikanForm({ match }) {
     setForm({
       ...form,
       [e.target.name]:
-      e.target.type === "file" ? e.target.files[0] : e.target.value,
+        e.target.type === "file" ? e.target.files[0] : e.target.value,
     });
-    if (form.image == null) {
-      const alert = (
-        <Alert variant="success" className="py-1">
-          Attachment Harus Di isi
-        </Alert>
-      );
-      setMessage(alert);
-    } else {
-      setMessage("")
-    }
-    
   }
+  console.log(hunian);
+  console.log(kepemilikan);
+
+  const getDataKepemilikan = async (id) => {
+    try {
+      const response = await API.get(`/kepemilikan/${id}`);
+      // Store product data to useState variabel
+      console.log(response)
+      setDataKepemilikan(response.data.data);
+      if (response.status == 200) {
+        console.log("suksess")
+        setForm({
+          tanggalkepemilikan: response.data.data.tanggalkepemilikan,
+          nomerrumah: response.data.data.nomerrumah,
+          nomerblok: response.data.data.nomerblok,
+          namawarga: response.data.data.namaWarga,
+          
+          // idh: response.data.data.idh,
+          
+        });
+        setHunian(response.data.data.idHunian)
+        setKepemilikan(response.data.data.idWarga)
+      }
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  useEffect(() => {
+    getDataKepemilikan(id)
+    console.log(setHunian)
+  }, [newKepemilikan]);
+ 
 
   const handleOnSubmit = async (e) => {
     console.log("tersubmit")
     try {
       e.preventDefault();
       const data = {
-      nomerblok: form.nomerblok,
-      nomerrumah: form.nomerrumah,
-      tipebangunan: form.tipebangunan,
-      luastanah: form.luastanah,
-      luasbangunan: form.luasbangunan,
+      tanggalkepemilikan: form.tanggalkepemilikan,
+      idhunian:hunian,
+      idwarga:kepemilikan,
       };
       
-      const response = await API.put(`/updatehunian/${id}`, data,);
+      const response = await API.put(`/updatekepemilikan/${id}`, data,);
       console.log(response);
       // setshow(true)
-      history.push("/hunian");
+      // history.push("/kepemilikan");
     } catch (error) {
       console.log(error);
     }
   };
-  // console.log(form.tanggallahir);
-  
-  console.log(form.tanggallahir);
-  // const today =  form.tanggallahir
-  let today  = new Date(form.tanggallahir);
-  const asd=moment(today).format("YYYY-DD-MM")
-  console.log(asd);
 
-    const [gender, setGender] = useState("Female");
-  
+  let today  = new Date(form.tanggalkepemilikan);
+  const dataTanggal=moment(today).format("YYYY-DD-MM")
+
+
+  console.log(form);
    
-    const onSiteChanged = (e) => {
-      setHunian(e.target.value);
-      console.log(e.target.value);
-      
-    }
   return (
     <Container>
       <Row>
         <Col>
-
           <>
-        
           <Form className="formStyle"  style={{marginTop:"40px"}} onSubmit={handleOnSubmit}> 
-              <Form.Group>
-                <Form.Control id="formHunian"
-                  name="nomerblok"
-                  type="text"
-                  required
-                  placeholder="nomerblok"
-                  value={form.nomerblok}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Control id="formHunian"
-                  name="nomerrumah"
-                  type="text"
-                  required
-                  placeholder="nomerrumah"
-                  value={form.nomerrumah}
-                  onChange={handleChange}
-                />
-                
-              </Form.Group>
-              <Form.Group>
-                <Form.Control id="formHunian"
-                  name="tipebangunan"
-                  type="text"
-                  required
-                  placeholder="tipebangunan"
-                  value={form.tipebangunan}
-                  onChange={handleChange}
-                />
-                
-              </Form.Group>
-            
-              <Form.Group>
-                <Form.Control id="formHunian"
-                  name="luastanah"
-                  type="text"
-                  required
-                  placeholder="luastanah"
-                  value={form.luastanah}
-                  onChange={handleChange}
-                />
-                
-              </Form.Group>
-            
-              <Form.Group>
-                <Form.Control id="formHunian"
-                  name="luasbangunan"
-                  type="text"
-                  required
-                  placeholder="luasbangunan"
-                  value={form.luasbangunan}
-                  onChange={handleChange}
-                />
-                
-              </Form.Group>
-            
+          <div style={{ width: 300, margin: 20 }}>
+            <div style={{ marginBottom: 20 }}>Hunian</div>
+            <ReactSearchAutocomplete
+              items={hunianData}
+              placeholder ={`Blok.`+form.nomerblok + ` No.`+form.nomerrumah}
+              onSearch={handleOnSearch}
+              onHover={handleOnHover}
+              onSelect={handleOnSelect}
+              onFocus={handleOnFocus}
+              formatResult={formatResult}
+
+              // onClear={handleOnClear}
+              styling={{ zIndex: 4 }} // To display it on top of the search box below
+              autoFocus
+            />
+          </div>
+          <div style={{ width: 300, margin: 20 }}>
+          
+            <div style={{ marginBottom: 20 }}>Pemilik</div>
+            <ReactSearchAutocomplete
+              items={kepemilikanData}
+              placeholder={form.namawarga}
+              onSearch={handleOnSearch}
+              onHover={handleOnHover}
+              onSelect={handleOnSelectKepemilikan}
+              onFocus={handleOnFocus}
+              formatResult={formatResult}
+
+              // onClear={handleOnClear}
+              styling={{ zIndex: 4 }} // To display it on top of the search box below
+              autoFocus
+            />
+          </div>
+              
+            <Form.Group className="mb-3" controlId="tanggalkepemilikan">
+              <Form.Control type="date" placeholder="tanggalkepemilikan" name="tanggalkepemilikan" value={dataTanggal} onChange={handleChange} />
+            </Form.Group>
+          
+            <br/>
               <div id="btnAddWrap">
                 <Button id="btnAdd" type="submit"  >
                   Update Hunian
@@ -188,6 +258,7 @@ function UpdateKepemilikanForm({ match }) {
 
         </Col>
       </Row>
+    
     </Container>
   )
 }

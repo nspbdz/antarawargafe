@@ -11,6 +11,8 @@ function AddKeluarga(props) {
   const [NewWarga, setNewWarga] = useState(false);
   const [warga, setWarga] = useState([]);
 
+  const [NewStatus, setNewStatus] = useState(false);
+  const [status, setStatus] = useState([]);
 
   const getHunian = async () => {
     try {
@@ -42,13 +44,28 @@ function AddKeluarga(props) {
     getWarga();
   }, [NewWarga]);
 
+  const getStatus = async () => {
+    try {
+      const response = await API.get("/allstatus");
+      // Store product data to useState variabel
+      setStatus(response.data.data);
+      // console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getStatus();
+  }, [NewStatus]);
+
   const [showSignin, setshowSignin] = useState(false);
 
   return (
     <div>
       <Row>
         <Col>
-        <AddKeluargaForm dataHunian={hunian} dataWarga={warga} />
+        <AddKeluargaForm dataHunian={hunian} dataWarga={warga} dataStatus={status} />
         </Col>
 
       </Row>
