@@ -63,9 +63,9 @@ const Keluarga = () => {
   return (
     <>
 
-      <Row >
-        {state.isLogin == true && (
-          <Col   >
+      <Row className="tableCenter" >
+          {state.isLogin == true && (
+          <Col   md="auto">
             <div id="wrapTitle">
             </div>
             <SearchForm handleSearch={setSearch} />

@@ -188,8 +188,8 @@ function AddKeluargaForm(props) {
   return (
     //  <p>add journey</p>
     <Container>
-      <Row>
-        <Col>
+      <Row className="tableCenter">
+        <Col md="auto">
           <>
           <div style={{ marginTop: 20, marginBottom: 20 }}>Create Keluarga</div>
           <Form className="formStyle"  style={{marginTop:"40px"}} onSubmit={handleOnSubmit}> 
@@ -258,6 +258,12 @@ function AddKeluargaForm(props) {
             <Button id="btnAdd" type="submit"  >
               Add Keluarga
           </Button>
+          {/* </div> */}
+        &nbsp;
+        {/* <div id="btnAddWrap"> */}
+            <Button id="btnAdd" onClick={() => history.goBack()}  >
+              Kembali
+          </Button>
           </div>
         </Form>
           </>
@@ -265,7 +271,9 @@ function AddKeluargaForm(props) {
       </Row>
 
         <br></br>
-      <Row>
+
+      <Row className="tableCenter" >
+          <Col   md="auto">
         <div>Daftar Anggota Keluarga</div>
         <br></br>
         <di>
@@ -276,9 +284,11 @@ function AddKeluargaForm(props) {
         <Button  variant="success" onClick={() => handlePushToAddAnggotaKeluarga()}   >
             Create
         </Button>
-        <br></br>
+        {/* <Button  variant="success" onClick={() => history.goBack()}   >
+            Kembali
+        </Button>
+        <br></br> */}
 
-        <Col>
         <AnggotaKeluargaList data={dataKeluarga} />
         <ModalCreateAnggotaKeluarga show={show} handleClose={() => setShow(false)} />
 

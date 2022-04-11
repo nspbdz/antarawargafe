@@ -83,9 +83,9 @@ const Kepemilikan = () => {
   return (
     <>
 
-      <Row >
+    <Row className="tableCenter" >
         {state.isLogin == true && (
-          <Col  sm="6" >
+          <Col md="auto">
             <div id="wrapTitle">
               {/* <span id="titleHome">Journey</span> */}
             </div>

@@ -48,9 +48,9 @@ function KepemilikanList(props) {
   return (
     <>
     <Row>
-      <Col sm={8} >
+    <Col sm={12} >
         
-        <Table striped bordered hover style={{ width: "650px" }} >
+        <Table responsive striped bordered hover  >
           <thead style={{ backgroundColor: "#E5E5E5" }}>
             <tr>
             <th>No</th>

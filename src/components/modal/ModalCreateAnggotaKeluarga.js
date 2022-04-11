@@ -132,8 +132,21 @@ const ModalCreateAnggotaKeluarga = (props) => {
       const response = await API.post("/createanggotakeluarga", formData, config);
       console.log(response);
       // setshow(true)
-      history.push("/addkeluarga");
+      // history.push("/addkeluarga");
+      const alert = (
+        <Alert variant="danger" className="py-1">
+          Success
+        </Alert>
+      );
+      setMessage(alert);
     } catch (error) {
+          const alert = (
+              <Alert variant="danger" className="py-1">
+                update failed
+              </Alert>
+            );
+            setMessage(alert);
+            console.log(error);
       console.log(error);
     }
   };
@@ -218,7 +231,7 @@ const ModalCreateAnggotaKeluarga = (props) => {
       </>
     )
   }
-
+console.log(message)
 
   return (
 
@@ -226,7 +239,7 @@ const ModalCreateAnggotaKeluarga = (props) => {
       <Modal.Body>
 
           <Form className="formStyle"  style={{marginTop:"40px"}} onSubmit={handleOnSubmit}> 
-
+        {message}
         {/* <Form
           onSubmit={handleCreateAnggotaKeluarga}
           style={{ paddingLeft: "33px", paddingRight: "33px", }}> */}
@@ -281,9 +294,17 @@ const ModalCreateAnggotaKeluarga = (props) => {
         />
       </div>
 
-          <Button id="btnModal" type="submit">
-            Submit
+          <div id="btnAddWrap">
+            <Button id="btnAddKeluarga" type="submit"  >
+              Add Keluarga
           </Button>
+          {/* </div> */}
+        &nbsp;
+        {/* <div id="btnAddWrap"> */}
+            <Button id="btnAddKeluarga" onClick={() => history.goBack()}  >
+              Kembali
+          </Button>
+          </div>
         </Form>
 
 

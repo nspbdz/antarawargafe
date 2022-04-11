@@ -225,7 +225,10 @@ color: #FFFFFF;
 #tables{
   width: 100%;
 }
-
+.tableCenter{
+  /* style={{justifyContent:"center"}} */
+  justify-content: center;
+}
 #wrapBtnSign{
   width:85px;
   margin-right:10px;
@@ -630,6 +633,9 @@ color: #000000;
 #btnAddWrap{
   text-align: center;
  
+}
+#btnAddWrapKeluarga{
+  width: 50px;
 }
 #btnAdd{
   width: 300px;

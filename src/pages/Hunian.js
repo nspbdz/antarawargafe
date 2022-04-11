@@ -83,9 +83,9 @@ const Hunian = () => {
   return (
     <>
 
-      <Row >
+      <Row className="tableCenter" >
         {state.isLogin == true && (
-          <Col   >
+          <Col md="auto">
             <div id="wrapTitle">
               {/* <span id="titleHome">Journey</span> */}
             </div>

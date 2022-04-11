@@ -29,14 +29,14 @@ function KeluargaList(props) {
     <Row>
       <Col sm={12} >
         
-        <Table id="tables" striped bordered hover style={{ width: "650px" }} >
+        <Table id="tables" responsive striped bordered hover >
           <thead style={{ backgroundColor: "#E5E5E5" }}>
             <tr>
               <th>No</th>
               <th>Nama</th>
               <th>Nik</th>
               <th>Status</th>
-              <th style={{ textAlign: "center" }}>Action</th>
+              {/* <th style={{ textAlign: "center" }}>Action</th> */}
             </tr>
           </thead>
 
@@ -51,28 +51,24 @@ function KeluargaList(props) {
               <tbody style={{ backgroundColor: "#FFFFFF" }} key={index}>
 
                 <tr id="TableStyle" >
-                  <td value={item.id}> {item.id}</td>
+                  <td value={item.id}> {index+1}</td>
                   <td> <p className="tableVal"> {item.namaWarga}</p> </td>
                   <td> <p className="tableVal"> {item.nik}</p> </td>
                   <td> <p className="tableVal"> {item.namaStatus}</p> </td>
                   {/* <td> <p className="tableVal"> {`Blok.`+ item.nomerblok + ` No.`+ item.nomerrumah}</p> </td> */}
                   {/* <td> <p className="tableVal"> {item.hunianstatus == 1 ?"Milik Sendiri":"Sewa"}</p> </td> */}
-                  <td  > 
-              <Row>
-                {/* <Col sm="6"> <Button variant="danger" onClick={() => CancelStatus(item.id)}> */}
+                  {/* <td  >  */}
+              {/* <Row>
+                <Col sm="6"> <Button variant="danger" onClick={() => CancelStatus(item.id)}>
                 <Col sm="6"> <Button variant="success" onClick={() => handlePushToUpdateKeluarga(item.id)} >
                   Ubah
                 </Button></Col>
                 <Col sm="5">  <Button  variant="danger" >
-                {/* <Col sm="5">  <Button  variant="success" onClick={() => approveStatus(item.id)}> */}
                   Delete
-                </Button></Col>
-                <Col sm="1"></Col>
-              </Row>
-              
-              
-            
-              </td>
+                </Button>
+                </Col>
+              </Row> */}
+              {/* </td> */}
 
                 </tr>
 
