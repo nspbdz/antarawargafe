@@ -29,7 +29,7 @@ function KeluargaList(props) {
     <Row>
       <Col sm={12} >
         
-        <Table striped bordered hover style={{ width: "1100px" }} >
+        <Table id="tables" striped bordered hover style={{ width: "650px" }} >
           <thead style={{ backgroundColor: "#E5E5E5" }}>
             <tr>
               <th>No</th>

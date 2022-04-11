@@ -27,7 +27,7 @@ function AddKeluargaForm(props) {
   const [wargaLingkungan, setwargaLingkungan] = useState(null);
   const [hunian, setHunian] = useState([])
   const [kepemilikan, setKepemilikan] = useState([])
-  
+
   const [NewDataKeluarga, setNewDataKeluarga] = useState(false);
   const [dataKeluarga, setDataKeluarga] = useState([]);
 
@@ -268,10 +268,16 @@ function AddKeluargaForm(props) {
       <Row>
         <div>Daftar Anggota Keluarga</div>
         <br></br>
+        <di>
+        &nbsp;
+
+        </di>
         {/* <span id="titleHome" >All Keluarga </span> */}
         <Button  variant="success" onClick={() => handlePushToAddAnggotaKeluarga()}   >
             Create
         </Button>
+        <br></br>
+
         <Col>
         <AnggotaKeluargaList data={dataKeluarga} />
         <ModalCreateAnggotaKeluarga show={show} handleClose={() => setShow(false)} />

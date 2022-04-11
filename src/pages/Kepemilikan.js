@@ -85,7 +85,7 @@ const Kepemilikan = () => {
 
       <Row >
         {state.isLogin == true && (
-          <Col   >
+          <Col  sm="6" >
             <div id="wrapTitle">
               {/* <span id="titleHome">Journey</span> */}
             </div>

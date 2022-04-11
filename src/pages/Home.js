@@ -141,13 +141,13 @@ const Home = () => {
                 {/* <span id="titleHome" >Today Journey  </span>
                 <span id="titleHome" > Top Bookmarked</span>
                 <MostBookmark data={bookmarkMostBookmarked} />*/}
-                 <span id="titleHome" >All Journey </span>
-                 <CardList data={bookmarkAllJourney} /> 
+                 {/* <span id="titleHome" >All Journey </span> */}
+                 {/* <CardList data={bookmarkAllJourney} />  */}
               </>
               :
               <>
-                <span id="titleHome" >Search Journey  </span>
-                <CardList data={bookmarkSearchJourney} />
+                {/* <span id="titleHome" >Search Journey  </span> */}
+                {/* <CardList data={bookmarkSearchJourney} /> */}
 
               </>
 

@@ -222,11 +222,14 @@ color: #FFFFFF;
 
 }
 
-
+#tables{
+  width: 100%;
+}
 
 #wrapBtnSign{
   width:85px;
   margin-right:10px;
+  margin-left:20px;
 }
 
 #btnLogin{

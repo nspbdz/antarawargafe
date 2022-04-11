@@ -114,15 +114,15 @@ console.log(state)
             </Form> */}
 
              <div id="wrapBtnSign">
-              <button id="btnLogin" className="my-2" onClick={() => setshow(true)} >
+              <button id="btnLogin" className="mr-2  my-2" onClick={() => setshow(true)} >
                 <p id="textBtnLogin"> Login</p>
               </button>
             </div>
-            <div id="wrapBtnSign">
+            {/* <div id="wrapBtnSign">
               <button id="btnRegister" className="my-2" onClick={() => setshowSignup(true)} >
                 <p id="textBtnRegister"> Register</p>
               </button>
-            </div>
+            </div> */}
             
              <ModalSignin ClickHereLogin={ClickHereLogin} show={show} handleClose={() => setshow(false)} handleLogin={dispatch} />
 

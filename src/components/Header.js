@@ -131,14 +131,14 @@ console.log(state)
            
             
             <div id="wrapBtnSign">
-              <button id="btnLogin" className="my-2" onClick={() => setshow(true)} >
+              <button id="btnLogin" className="my-4" onClick={() => setshow(true)} >
                 <p id="textBtnLogin"> Login</p>
               </button>
             </div>
-            <Button id="btnRegister" className="mr-3 my-2" onClick={() => setshowSignup(true)}   >
+            {/* <Button id="btnRegister" className="mr-3 my-2" onClick={() => setshowSignup(true)}   >
               <p id="textBtnRegister"> Register</p>
 
-            </Button>
+            </Button> */}
             <ModalSignin ClickHereLogin={ClickHereLogin} show={show} handleClose={() => setshow(false)} handleLogin={dispatch} />
 
             <ModalSignup

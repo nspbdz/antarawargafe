@@ -100,9 +100,9 @@ const Warga = () => {
   return (
     <>
 
-      <Row >
+      <Row style={{justifyContent:"center"}} >
         {state.isLogin == true && (
-          <Col   >
+          <Col   md="auto">
             <div id="wrapTitle">
               {/* <span id="titleHome">Journey</span> */}
             </div>

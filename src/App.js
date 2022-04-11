@@ -88,9 +88,11 @@ function App() {
           type: "AUTH_ERROR",
         });
       }
+      console.log(response);
 
       // Get user data
       let payload = response.data.data.user;
+      console.log(payload)
       // Get token from local storage
       payload.token = localStorage.token;
 

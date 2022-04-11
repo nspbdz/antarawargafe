@@ -82,6 +82,7 @@ const ModalCreateAnggotaKeluarga = (props) => {
     getAllKepalaKeluarga();
   }, [NewDataKepalaKeluarga]);
 
+  console.log(dataKepalaKeluarga);
   var kepalaKeluargaData = [];
   dataKepalaKeluarga.map((item,i) => 
   {
@@ -131,7 +132,7 @@ const ModalCreateAnggotaKeluarga = (props) => {
       const response = await API.post("/createanggotakeluarga", formData, config);
       console.log(response);
       // setshow(true)
-      // history.push("/addkeluarga");
+      history.push("/addkeluarga");
     } catch (error) {
       console.log(error);
     }
