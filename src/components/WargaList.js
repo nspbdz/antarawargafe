@@ -54,7 +54,7 @@ console.log(data);
     <Row>
       <Col sm={12} >
         
-        <Table responsive striped bordered hover  >
+        <Table responsive striped bordered hover className="tableStyle" >
           <thead style={{ backgroundColor: "#E5E5E5" }}>
             <tr>
               <th>No</th>

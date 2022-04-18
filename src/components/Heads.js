@@ -112,24 +112,29 @@ console.log(state)
               <Form.Input type="search" placeholder="Search" mr="sm-2" />
               <Button outline info my="2 sm-0">Search</Button>
             </Form> */}
+        {!state.isLogin && (
 
              <div id="wrapBtnSign">
               <button id="btnLogin" className="mr-2  my-2" onClick={() => setshow(true)} >
                 <p id="textBtnLogin"> Login</p>
               </button>
             </div>
-            {/* <div id="wrapBtnSign">
-              <button id="btnRegister" className="my-2" onClick={() => setshowSignup(true)} >
-                <p id="textBtnRegister"> Register</p>
-              </button>
-            </div> */}
+        
+        )}
+
+       
             
-             <ModalSignin ClickHereLogin={ClickHereLogin} show={show} handleClose={() => setshow(false)} handleLogin={dispatch} />
+             <ModalSignin ClickHereLogin={ClickHereLogin} show={show} handleClose={() => setshow(false)} 
+              className="Modal"
+              overlayClassName="Overlay"
+             handleLogin={dispatch} />
 
             <ModalSignup
             showSignup={showSignup}
             ClickHereRegister={ClickHereRegister}
             handleClose={() => setshowSignup(false)}
+            className="Modal"
+           overlayClassName="Overlay"
             /> 
           </Collapse>
         </Navbar>

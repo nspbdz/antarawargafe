@@ -76,48 +76,47 @@ const ModalSignin = (props) => {
 // console.log(handleRegister)
  
   return (
-    <Modal show={show} onHide={handleClose} centered className="my-modal">
-      <div id="modalStyleShape">
-      </div>
-      <div id="modalStyleLeaf">
-      </div>
-      <Modal.Body>
-    
-        <Form 
-        onSubmit={handleSubmit}
-         style={{ paddingLeft: "33px", paddingRight: "33px", }}>
-           
-          <Form.Group>
-            <h3 style={{ color: "#BD0707", paddingTop: "20px", paddingBottom: "29px" }} > Login</h3>
-          {message && message}
-            <Form.Control id="formProduct"
-              type="email"
-              name="email"
-              // value={data.email}
-              onChange={handleChange}
-              placeholder="email"
-            />
+   
+    <Modal show={show} onHide={handleClose} centered className="my-modal" >
+    <Modal.Body>
+  
+      <Form 
+      onSubmit={handleSubmit}
+       style={{ paddingLeft: "33px", paddingRight: "33px", }}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
 
-          </Form.Group>
-
-          <Form.Group>
-            <Form.Control id="formProduct"    
-              type="password"
-              name="password"
-              // value={data.password}
-              onChange={handleChange}
-              placeholder="Password"
-            />
-          </Form.Group>
-          <Button id="modalBtn" type="submit">
-            Login
-          </Button>
-          <span>Don't have an account ? Klik <span onClick={ClickHereLogin}> Here</span>  </span>
+          <h3 style={{ color: "#BD0707", paddingTop: "20px", paddingBottom: "29px" }} > Login</h3>
+        {message && message}
           
-        </Form>
+          <Form.Control id="formProduct"
+            type="email"
+            name="email"
+            // value={data.email}
+            onChange={handleChange}
+            placeholder="email"
+          />
 
-      </Modal.Body>
-    </Modal>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Control id="formProduct"
+            type="password"
+            name="password"
+            // value={data.password}
+            onChange={handleChange}
+            placeholder="Password"
+          />
+        </Form.Group>
+        <Button id="btnAdd" type="submit">
+          Login
+        </Button>
+        <br></br>
+        <span>Don't have an account ? Klik <span onClick={ClickHereLogin}> Here</span>  </span>
+        
+      </Form>
+
+    </Modal.Body>
+  </Modal>
   );
 };
 

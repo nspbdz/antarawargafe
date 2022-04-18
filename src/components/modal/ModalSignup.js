@@ -73,10 +73,10 @@ const ModalSignin = (props) => {
 
   return (
     <Modal show={showSignup} onHide={handleClose} centered>
-      <div id="modalStyleShape">
+      {/* <div id="modalStyleShape">
       </div>
       <div id="modalStyleLeaf">
-      </div>
+      </div> */}
       <Modal.Body>
 
         <Form onSubmit={handleSubmit} style={{ paddingLeft: "33px", paddingRight: "33px", }}>
@@ -134,7 +134,7 @@ const ModalSignin = (props) => {
             />
 
           </Form.Group>
-          <Button id="modalBtn" type="submit">
+          <Button id="btnAdd" type="submit">
             Register
           </Button>
           <p>Already have an account ? Click <span onClick={ClickHereRegister}> Here</span></p>
