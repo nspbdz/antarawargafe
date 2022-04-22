@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Col, Row,Button } from "react-bootstrap";
+import { Col, Row,Button,Container } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import WargaList from "../components/WargaList";
 import { API } from "../config/api";
@@ -100,9 +100,11 @@ const Warga = () => {
   return (
     <>
 
+        <Container>
       <Row className="tableCenter" >
-        {state.isLogin == true && (
-          <Col   md="auto">
+        {state.
+        isLogin == true && (
+          <Col>
             <div id="wrapTitle">
               {/* <span id="titleHome">Journey</span> */}
             </div>
@@ -129,9 +131,11 @@ const Warga = () => {
               </>
 
             }
+            
           </Col>
         )}
       </Row>
+      </Container>
     </>
   )
 }

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, Col, Row, Container } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import SearchForm from "../components/form/SearchForm";
 import StatusList from "../components/StatusList";
@@ -82,8 +82,9 @@ const Status = () => {
 
   return (
     <>
+   <Container>
     
-    <Row className="tableCenter" >
+      <Row className="tableCenter" >
         {state.isLogin == true && (
           <Col md="auto">
             <div id="wrapTitle">
@@ -110,6 +111,8 @@ const Status = () => {
           </Col>
         )}
       </Row>
+   </Container>
+
     </>
   )
 }

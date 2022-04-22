@@ -145,7 +145,8 @@ function AddWargaForm() {
           <InputGroup.Radio value="2" name="wargalingkungan" aria-label="Radio 2" />Warga Luar Lingkungan
         </InputGroup> */}
 
-       <br/>
+             <br/>
+             <br></br>
               <div id="btnAddWrap">
                 <Button id="btnAdd" type="submit"  >
                   Add Journey

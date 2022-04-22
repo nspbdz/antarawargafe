@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Col, Row,Button } from "react-bootstrap";
+import { Col, Row,Button,Container } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import KeluargaList from "../components/KeluargaList";
 import { API } from "../config/api";
@@ -63,6 +63,7 @@ const Keluarga = () => {
   return (
     <>
 
+        <Container>
       <Row className="tableCenter" >
           {state.isLogin == true && (
           <Col   md="auto">
@@ -88,6 +89,7 @@ const Keluarga = () => {
           </Col>
         )}
       </Row>
+        </Container>
     </>
   )
 }

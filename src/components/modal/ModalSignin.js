@@ -78,17 +78,16 @@ const ModalSignin = (props) => {
   return (
    
     <Modal show={show} onHide={handleClose} centered className="my-modal" >
-    <Modal.Body>
-  
+    <Modal.Body >
+      <div className=" centerForm">
       <Form 
-      onSubmit={handleSubmit}
-       style={{ paddingLeft: "33px", paddingRight: "33px", }}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+      onSubmit={handleSubmit}>
+      <Form.Group id="modalform" controlId="formBasicEmail">
 
-          <h3 style={{ color: "#BD0707", paddingTop: "20px", paddingBottom: "29px" }} > Login</h3>
+          <h3> Login</h3>
         {message && message}
           
-          <Form.Control id="formProduct"
+          <Form.Control id="modalform"
             type="email"
             name="email"
             // value={data.email}
@@ -98,8 +97,8 @@ const ModalSignin = (props) => {
 
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Control id="formProduct"
+        <Form.Group id="modalform" controlId="formBasicPassword">
+          <Form.Control id="modalform"
             type="password"
             name="password"
             // value={data.password}
@@ -107,14 +106,19 @@ const ModalSignin = (props) => {
             placeholder="Password"
           />
         </Form.Group>
-        <Button id="btnAdd" type="submit">
+        {/* <Row>
+          <Col> */}
+          <Button id="btnModal" type="submit">
           Login
         </Button>
+          
+          {/* </Col>
+        </Row> */}
         <br></br>
         <span>Don't have an account ? Klik <span onClick={ClickHereLogin}> Here</span>  </span>
         
       </Form>
-
+      </div>
     </Modal.Body>
   </Modal>
   );

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, Col, Row, Container } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import SearchForm from "../components/form/SearchForm";
 import KepemilikanList from "../components/KepemilikanList";
@@ -82,6 +82,7 @@ const Kepemilikan = () => {
 
   return (
     <>
+   <Container>
 
     <Row className="tableCenter" >
         {state.isLogin == true && (
@@ -110,6 +111,8 @@ const Kepemilikan = () => {
           </Col>
         )}
       </Row>
+   </Container>
+
     </>
   )
 }

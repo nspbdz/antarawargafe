@@ -56,7 +56,7 @@ const ModalCreateAnggotaKeluarga = (props) => {
 
   const getAllWarga = async () => {
     try {
-      const response = await API.get("/wargas");
+      const response = await API.get("/warganullstatus");
       // Store product data to useState variabel
       setDataWarga(response.data.data);
       // console.log(response);

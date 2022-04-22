@@ -93,13 +93,8 @@ console.log(data);
                 </Button></Col>
                 <Col sm="1"></Col>
               </Row>
-              
-              
-            
               </td>
-
                 </tr>
-
               </tbody>
 
             ))}

@@ -125,16 +125,16 @@ console.log(state)
        
             
              <ModalSignin ClickHereLogin={ClickHereLogin} show={show} handleClose={() => setshow(false)} 
-              className="Modal"
-              overlayClassName="Overlay"
+              // className="Modal"
+              // overlayClassName="Overlay"
              handleLogin={dispatch} />
 
             <ModalSignup
             showSignup={showSignup}
             ClickHereRegister={ClickHereRegister}
             handleClose={() => setshowSignup(false)}
-            className="Modal"
-           overlayClassName="Overlay"
+            // className="Modal"
+          //  overlayClassName="Overlay"
             /> 
           </Collapse>
         </Navbar>

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, Col, Row,Container } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import SearchForm from "../components/form/SearchForm";
 import HunianList from "../components/HunianList";
@@ -83,6 +83,8 @@ const Hunian = () => {
   return (
     <>
 
+   <Container>
+     
       <Row className="tableCenter" >
         {state.isLogin == true && (
           <Col md="auto">
@@ -109,7 +111,9 @@ const Hunian = () => {
             }
           </Col>
         )}
+       
       </Row>
+    </Container>
     </>
   )
 }
