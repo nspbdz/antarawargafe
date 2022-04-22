@@ -262,6 +262,18 @@ color: #FFFFFF;
 #titleHome{
   font-size: 8px;
 }
+.modal-content{
+  text-align: center;
+  justify-content: center!important ;
+  margin: auto!important;
+}
+
+ .centerForm{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height:100vh;   */
+} 
 @media (max-width: 500px) {
   .table-responsive{
     zoom: 50%;
